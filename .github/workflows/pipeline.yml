@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Simple CI/CD
 
 on:
   push:
@@ -6,16 +6,18 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run tests
         run: |
-          echo "This is a simple test"
-      - name: Deploy
-        uses: actions/deploy@v2
-        with:
-          provider: github
-          ref: main
+          echo "Running tests..."
+      - name: Deployment
+        uses: actions/checkout@v2
+        run: |
+          echo "Deploying..."
+      - name: Result
+        run: |
+          echo "Workflow success!"
